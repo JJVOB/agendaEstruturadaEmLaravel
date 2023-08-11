@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[\App\Http\Controllers\PrincipalController::class,'principal'])->name('site.index');
 Route::get('/cadastro',[\App\Http\Controllers\CadastroController::class,'cadastro'])->name('site.cadastro');
+Route::get('/cadastrarAgendamento',[\App\Http\Controllers\CadastrarAgendamentoController::class,'cadastrarAgendamento'])->name('site.cadastrarAgendamento');
 Route::get('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
 Route::get('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
 
