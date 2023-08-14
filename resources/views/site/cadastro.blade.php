@@ -15,11 +15,8 @@
                 
             @endcomponent
 
-
             <div class="row justify-content-center">
                
-
-
             </div>
         </div>
     </section>

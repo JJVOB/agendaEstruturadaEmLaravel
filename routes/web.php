@@ -18,7 +18,7 @@ Route::get('/cadastro',[\App\Http\Controllers\CadastroController::class,'cadastr
 Route::get('/cadastrarAgendamento',[\App\Http\Controllers\CadastrarAgendamentoController::class,'cadastrarAgendamento'])->name('site.cadastrarAgendamento');
 Route::get('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
 Route::get('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
-
+Route::get('/deletarEvento',[\App\Http\Controllers\deleteController::class,'delete'])->name('site.delete');
 
 
 /* Caso a pagina não seja encontrada */

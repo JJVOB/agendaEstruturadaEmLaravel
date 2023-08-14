@@ -1,12 +1,11 @@
 @extends('site.layouts.estruturaBasica')
-@section('titulo','Agendamentos Anteriores')
+@section('titulo','Agendamentos Futuros')
 
 @section('principal')
 
     @include('site.layouts._partials.topo')
 
 
-    <!-- Resolver o problemado do BDD e exclusao e edição do evento   -->
 
 <section id="home">
     <div id="caixa_formulario" class="container pt-5 pb-5">
@@ -29,7 +28,7 @@
 
                 <tbody class="table table-bordereds justify-content-center">
 
-                    @component('site.layouts._exbAgenda.exbAgenda')
+                    @component('site.layouts._exbAgenda.exbProximos')
                  
                     @endcomponent 
                 </tbody>
@@ -70,8 +69,8 @@
                     Tem certeza de que deseja excluir este item?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <form id="formDelete" action="deleteEvento.php" method="post" style="display: inline;">
+                    <button type="button" onclick="location.href='{{ route('site.agendamentosFuturos') }}' " class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <form id="formDelete" onclick="location.href='{{ route('site.delete') }}' " method="POST" style="display: inline;">
                         <button id="delete" type="submit" class="btn btn-danger">Excluir</button>
                     </form> 
                 </div>
