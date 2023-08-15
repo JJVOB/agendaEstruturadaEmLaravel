@@ -1,5 +1,5 @@
 
-<form id="formularioItens" method="POST" action={{route('site.cadastrarAgendamento')}}>
+<form id="formularioItens" method="POST" action={{route('site.agenda')}}>
     @csrf
     <div class="form-group row">
         <label for="nomeDoEvento" class="col-md-3 col-form-label">Nome do evento</label>

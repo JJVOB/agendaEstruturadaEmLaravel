@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[\App\Http\Controllers\PrincipalController::class,'principal'])->name('site.index');
-Route::get('/cadastro',[\App\Http\Controllers\CadastroController::class,'cadastro'])->name('site.cadastro');
-Route::get('/cadastrarAgendamento',[\App\Http\Controllers\CadastrarAgendamentoController::class,'cadastrarAgendamento'])->name('site.cadastrarAgendamento');
+Route::post('/agendarEvento',[\App\Http\Controllers\agendarEventoController::class,'agendarEvento'])->name('site.agendarEvento');
+Route::get('/agenda',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
 Route::get('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
 Route::get('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
-Route::get('/deletarEvento',[\App\Http\Controllers\deleteController::class,'delete'])->name('site.delete');
+Route::delete('/deletarEvento',[\App\Http\Controllers\deleteController::class,'delete'])->name('site.delete');
+
+
+
 
 
 /* Caso a pagina não seja encontrada */

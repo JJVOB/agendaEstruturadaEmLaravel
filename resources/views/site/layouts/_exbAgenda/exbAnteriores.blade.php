@@ -4,12 +4,21 @@
 $user = 'root';
 $pass = '';
 $db = new PDO('mysql:host=localhost;dbname=agenda_bd', $user, $pass);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Mostra erros do PDO
+
 
 $time = time();
-$sql = "SELECT * FROM agenda_bd WHERE  UNIX_TIMESTAMP(data_final) < $time";
+//$sql = "SELECT * FROM agenda_bd WHERE  UNIX_TIMESTAMP(data_final) < $time";
 
-$result = $db->query($sql);
-$rows = $result->fetchAll();
+$sql = "SELECT * FROM agenda_bd WHERE UNIX_TIMESTAMP(data_final) < :time";
+$result = $db->prepare($sql);
+$result->bindValue(':time', $time, PDO::PARAM_INT);
+$result->execute();
+$rows = $result->fetchAll(PDO::FETCH_ASSOC);
+
+
+//$result = $db->query($sql);
+//$rows = $result->fetchAll();
 
 foreach($rows as $key => $value){
     if(!empty($value['data_inicial']) && isset($value['data_inicial'])){
