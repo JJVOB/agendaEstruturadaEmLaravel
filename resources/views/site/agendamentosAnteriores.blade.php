@@ -34,8 +34,7 @@
         </div>
     </div>
 
-
-     <div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacaoLabel" aria-hidden="true">
+<div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacaoLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -48,14 +47,18 @@
                     Tem certeza de que deseja excluir este item?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" action="" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <form id="formDelete" action="" method="post" style="display: inline;">
-                        <button id="delete" type="submit" class="btn btn-danger">Excluir</button>
-                    </form> 
+                    <button type="button" onclick="location.href='{{ route('site.agendamentosAnteriores') }}' " class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <form method="POST" action="{{ route('site.delete', ['id' => $value['id']]) }}">
+                    @csrf
+                    <button class="btn btn-danger btn-delete" style="display: inline;" data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
                 </div>
             </div>
             </div>
     </div>
+
 </section>
 
 @endsection
