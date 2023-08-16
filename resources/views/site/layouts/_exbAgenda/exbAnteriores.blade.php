@@ -10,7 +10,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Mostra erros do
 $time = time();
 //$sql = "SELECT * FROM agenda_bd WHERE  UNIX_TIMESTAMP(data_final) < $time";
 
-$sql = "SELECT * FROM agenda_bd WHERE UNIX_TIMESTAMP(data_final) < :time";
+$sql = "SELECT * FROM eventos WHERE UNIX_TIMESTAMP(data_final) < :time";
 $result = $db->prepare($sql);
 $result->bindValue(':time', $time, PDO::PARAM_INT);
 $result->execute();
@@ -33,9 +33,9 @@ foreach($rows as $key => $value){
         <tr>
             <th>' .$value['id']. '</th>
             <td>' .$value['titulo']. '</td>
-            <td>' .$value['descricao']. '</td>
             <td>' .$value['data_inicial']. '</td>
             <td>' .$value['data_final']. '</td>
+            <td>' .$value['descricao']. '</td>
             <td>' .$value['cliente']. '</td>
             <td> 
             

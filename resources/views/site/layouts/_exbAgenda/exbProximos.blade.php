@@ -11,13 +11,14 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Mostra erros do
 $time = time();
 //$sql = "SELECT * FROM agenda_bd WHERE  UNIX_TIMESTAMP(data_final) < $time";
 
-$sql = "SELECT * FROM agenda_bd WHERE UNIX_TIMESTAMP(data_final) > :time";
+$sql = "SELECT * FROM eventos WHERE UNIX_TIMESTAMP(data_final) > :time";
 $result = $db->prepare($sql);
 $result->bindValue(':time', $time, PDO::PARAM_INT);
 $result->execute();
 $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
 foreach($rows as $key => $value){
+    
     if(!empty($value['data_inicial']) && isset($value['data_inicial'])){
         $value['data_inicial'] = date('d/m/Y H:i', strtotime($value['data_inicial']));
     }
@@ -30,9 +31,9 @@ foreach($rows as $key => $value){
         <tr>
             <th>' .$value['id']. '</th>
             <td>' .$value['titulo']. '</td>
-            <td>' .$value['descricao']. '</td>
             <td>' .$value['data_inicial']. '</td>
             <td>' .$value['data_final']. '</td>
+            <td>' .$value['descricao']. '</td>
             <td>' .$value['cliente']. '</td>
             <td> 
                 <button class="btn btn-primary btn-edit" style="display: inline;" value="'. $value['id'] .'"data-bs-toggle="modal"  data-bs-target="#editarClienteModal"> <i class="fas fa-edit"></i></button>

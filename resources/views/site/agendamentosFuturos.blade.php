@@ -19,9 +19,9 @@
                     <tr>
                         <th>#</th>
                         <th>Nome do evento</th>
-                        <th>Descrição do evento</th>
                         <th>Data de inicio</th>
                         <th>Data final</th>
+                        <th>Descrição do evento</th>
                         <th>Cliente</th>
                         <th>Ações</th>
                     </tr>

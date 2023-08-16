@@ -10,9 +10,10 @@ class Evento extends Model
 
     protected $fillable = [
         'titulo',
-        'data_inicial',
-        'datetime',
         'descricao',
-        'cliente',
+        'data_inicial',
+        'data_final',
+        'cliente'
    ];
+  
 }

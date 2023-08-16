@@ -1,6 +1,4 @@
 <?php 
-
-
 $user = 'root';
 $pass = '';
 $db = new PDO('mysql:host=localhost;dbname=agenda_bd', $user, $pass);
@@ -19,7 +17,7 @@ if(!empty($_POST['nomeDoEvento']) &&
     $fimdata = $_POST['fimdata'];
     $cliente = $_POST['cliente'];
 
-    $sql = "INSERT INTO consultoria(data_inicial, data_final, titulo, descricao, cliente) VALUES(:iniciodata, :fimdata, :nomeDoEvento, :descricao, :cliente)";
+    $sql = "INSERT INTO eventos(data_inicial, data_final, titulo, descricao, cliente) VALUES(:iniciodata, :fimdata, :nomeDoEvento, :descricao, :cliente)";
         
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':iniciodata', $iniciodata );
