@@ -22,20 +22,21 @@ Route::get('/',[\App\Http\Controllers\PrincipalController::class,'principal'])->
 
 Route::prefix('agenda')->group(function (){
     Route::get('/agenda',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
-    Route::post('/agenda',[\App\Http\Controllers\agendaController::class,'salvar'])->name('site.agenda');
-    Route::delete('/agenda',[\App\Http\Controllers\agendaController::class,'deletar'])->name('site.delete');
+    Route::post('/agenda',[\App\Http\Controllers\agendaController::class,'salvar'])->name('site.salvar');
+    Route::delete('/deletar',[\App\Http\Controllers\agendaController::class,'deletar'])->name('site.delete');
     
 });
 
 Route::prefix('exibir')->group(function (){
 
-    Route::get('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
-    Route::post('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
+    Route::get('/agendamentosAnteriores',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
+    Route::post('/agendamentosAnteriores',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
     
-    Route::get('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
-    Route::post('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
+    Route::get('/agendamentosFuturos',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
+    Route::post('/agendamentosFuturos',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
     
- 
+    Route::get('/todosOsAgendamentos',[\App\Http\Controllers\ExibirEventosController::class,'todosOsAgendamentos'])->name('site.todosOsAgendamentos');
+    Route::post('/todosOsAgendamentos',[\App\Http\Controllers\ExibirEventosController::class,'todosOsAgendamentos'])->name('site.todosOsAgendamentos');
 });
 
 

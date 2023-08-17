@@ -1,5 +1,5 @@
 
-<form id="formularioItens" method="POST" action={{route('site.agenda')}}>
+<form id="formularioItens" method="POST" action={{route('site.salvar')}}>
     @csrf
     <div class="form-group row">
         <label for="nomeDoEvento" class="col-md-3 col-form-label">Nome do evento</label>
@@ -37,6 +37,6 @@
     </div>
 
     <div id="botoes" class="row justify-content-center">
-        <button id="botao" class="btn btn-custom btn-branco" type="submit" value="Salvar">SALVAR</button>
+        <button id="botao" class="btn btn-custom btn-success" type="submit" value="Salvar" >SALVAR</button>
     </div>    
 </form>
