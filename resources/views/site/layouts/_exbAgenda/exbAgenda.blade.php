@@ -20,10 +20,11 @@
                         @endforeach
 
                         <div>
-                            <form action = "" method = "get">
-                                <input type = "text" name ="pesquisar" placeholder= "Pesquisar " />
-                                <button type="button" onclick="location.href='{{ route('site.agendamentosAnteriores') }}' " class="btn btn-secondary" data-dismiss="modal">Pesquisar</button>
-                            </form>
+                            <form action = "{{route('evento.index')}}" method = "get">
+                            <input type = "text" name ="pesquisar" placeholder= "Pesquisar " />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Pesquisar</button>
+                        </form>
+                        <br><br><br>
                         </div>
                     </tbody>
                 </thead>

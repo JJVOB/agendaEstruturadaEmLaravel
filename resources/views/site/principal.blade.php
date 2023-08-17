@@ -13,9 +13,7 @@
 
             <div class="display-4 text-center col">
                     <input class="btn btn-custom btn-branco " type="submit" onclick="location.href='{{ route('site.salvar') }}'" value=" Criar agendamento  "/>
-                    <input class="btn btn-custom btn-branco" type="submit" onclick="location.href='{{ route('site.todosOsAgendamentos') }}' " value=" Listar todos os agendamentos"/>
-                    <input class="btn btn-custom btn-branco" type="submit" onclick="location.href='{{ route('site.agendamentosAnteriores') }}' " value=" Listar agendamentos anteriores "/>
-                    <input class="btn btn-custom btn-branco" type="submit" onclick="location.href='{{ route('site.agendamentosFuturos') }}' " value=" Listar os próximos agendamentos"/>
+                    <input class="btn btn-custom btn-branco" type="submit" onclick="location.href='{{ route('site.ev') }}' " value=" Listar todos os agendamentos"/>
             </div>
         </div>
     </section>
