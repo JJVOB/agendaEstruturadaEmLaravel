@@ -48,12 +48,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" onclick="location.href='{{ route('site.agendamentosAnteriores') }}' " class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form method="POST" action="{{ route('site.delete', ['id' => $value['id']]) }}">
-                    @csrf
-                    <button class="btn btn-danger btn-delete" style="display: inline;" data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </form>
+
                 </div>
             </div>
             </div>
@@ -62,3 +57,4 @@
 </section>
 
 @endsection
+

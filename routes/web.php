@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\agendaController;
+use App\Http\Controllers\AgendamentosAnterioresController;
+use App\Http\Controllers\AgendamentosFuturosController;
+use App\Http\Controllers\PrincipalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,24 +18,25 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/',[\App\Http\Controllers\PrincipalController::class,'principal'])->name('site.index');
 
-Route::post('/agendarEvento',[\App\Http\Controllers\agendarEventoController::class,'agendarEvento'])->name('site.agendarEvento');
-
-Route::get('/agenda',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
-Route::post('/agenda',[\App\Http\Controllers\agendaController::class,'salvar'])->name('site.agenda');
-
-Route::post('/agenda',[\App\Http\Controllers\agendaController::class,'deletar'])->name('site.delete');
 
 
+Route::prefix('agenda')->group(function (){
+    Route::get('/agenda',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
+    Route::post('/agenda',[\App\Http\Controllers\agendaController::class,'salvar'])->name('site.agenda');
+    Route::delete('/agenda',[\App\Http\Controllers\agendaController::class,'deletar'])->name('site.delete');
+    
+});
 
+Route::prefix('exibir')->group(function (){
 
-Route::get('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
-Route::post('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
-
-Route::get('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
-Route::post('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
-
-//Route::post('/deleteEvento',[\App\Http\Controllers\deleteController::class,'deletar'])->name('site.delete');
-
+    Route::get('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
+    Route::post('/agendamentosAnteriores',[\App\Http\Controllers\AgendamentosAnterioresController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
+    
+    Route::get('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
+    Route::post('/agendamentosFuturos',[\App\Http\Controllers\AgendamentosFuturosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
+    
+ 
+});
 
 
 

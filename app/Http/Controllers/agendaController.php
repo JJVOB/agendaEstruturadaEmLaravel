@@ -42,19 +42,9 @@ class agendaController extends Controller
         return view('site.agenda');
     }
 
-    public function deletar($id){
 
-        $elemento = Evento::find($id);
 
-        if($elemento){
-            $elemento->delete();
-            return "Evento deletado com sucesso !!";
-        } else{
-            return "Evento nao econtrado !!";
-        }
-        return view('site.agenda');
 
-    }
 
     
 }
