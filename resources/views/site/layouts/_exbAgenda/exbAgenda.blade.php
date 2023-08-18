@@ -6,7 +6,7 @@ $db = new PDO('mysql:host=localhost;dbname=agenda_bd', $user, $pass);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $time = time();
-$sql = "SELECT * FROM eventos ";
+$sql = "SELECT * FROM eventos";
 $result = $db->prepare($sql);
 $result->bindValue(':time', $time, PDO::PARAM_INT);
 $result->execute();
@@ -31,18 +31,18 @@ foreach($rows as $key => $value){
             <td>' .htmlspecialchars($value['data_final']). '</td>
             <td>' .htmlspecialchars($value['descricao']). '</td>
             <td>' .htmlspecialchars($value['cliente']). '</td>
-            <td>
-                <!-- Botão para editar (abre um modal) -->
-                <a href="" class="btn btn-primary btn-edit" style="display: inline;" data-bs-toggle="modal" data-bs-target="#editarClienteModal">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <!-- Botão para excluir (chama a função deleteEvento) -->
+            <td> 
                 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-                <a onclick="deleteEvento('{{route('site.delete')}}',{{$evento->id}})" class="btn btn-danger btn-delete" style="display: inline;"  data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
+                <input class="btn btn-info btn-sm" type="submit" 
+                onclick="" value=" Editar  "/>
+    
+                <input class="btn btn-danger btn-sm" type="submit" 
+                onclick="location.href=delete(\'{{ route(\'evento.delete\') }}\', ' . $value['id'] . ')" 
+                value=" Excluir  "/>
+
             </td>
         </tr>
     ';
 }
+?>

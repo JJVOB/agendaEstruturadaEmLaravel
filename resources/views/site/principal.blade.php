@@ -12,10 +12,9 @@
             </div>
 
             <div class="display-4 text-center col">
-                    <input class="btn btn-custom btn-branco " type="submit" onclick="location.href='{{ route('cadastro.evento') }}'" value=" Criar agendamento  "/>
-                    <input class="btn btn-custom btn-branco" type="submit" onclick="location.href='{{ route('site.eventos') }}' " value=" Listar todos os agendamentos"/>
-                    <input class="btn btn-custom btn-branco" type="submit" onclick="location.href='{{ route('site.teste') }}' " value=" Teste BD"/>
-            </div>
+                    <input type="button" class="btn btn-outline-primary" type="submit" onclick="location.href='{{ route('cadastro.evento') }}'" value=" Criar agendamento  "/>
+                    <input type="button" class="btn btn-outline-secondary" type="submit" onclick="location.href='{{ route('site.eventos') }}' " value=" Listar todos os agendamentos"/>
+            </div> 
         </div>
     </section>
 

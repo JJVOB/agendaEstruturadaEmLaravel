@@ -32,6 +32,10 @@ Route::prefix('agenda')->group(function () {
     Route::get('/cadastraEvento',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
     Route::post('/cadastraEvento',[\App\Http\Controllers\agendaController::class,'cadastraEvento'])->name('cadastro.evento');
 
+    //edit
+    Route::get('/atualizarEvento{id}',[\App\Http\Controllers\agendaController::class,'atualizarEvento'])->name('atualizar.evento');
+    Route::put('/atualizarEvento{id}',[\App\Http\Controllers\agendaController::class,'atualizarEvento'])->name('atualizarevento.evento');
+
     Route::delete('/delete',[\App\Http\Controllers\agendaController::class,'delete'])->name('evento.delete');        
    
     Route::get('/agendamentos',[\App\Http\Controllers\agendaController::class,'pesquisarEvento'])->name('site.eventos');

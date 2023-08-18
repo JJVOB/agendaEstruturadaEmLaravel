@@ -26,7 +26,7 @@
                     </tr>
                     <tbody class="table table-bordereds justify-content-center">
                     
-                        @component('site.layouts._exbAgenda.exbAgenda')
+                        @component('site.layouts._exbAgenda.exbAnteriores')
                 
                         @endcomponent 
                     </tbody>
