@@ -3,12 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Evento extends Model
 {
-
-
-    protected $fillable = [
+  protected $fillable = [
         'titulo',
         'descricao',
         'data_inicial',
@@ -17,12 +16,12 @@ class Evento extends Model
    ];
 
 
-   public function getPordutosPesquisar(string $search = ''){
+   public function buscarEventos(string $search = ''){
 
-        $evento = $this->where(function($query) use($search){
+        $evento = $this->where(function($query) use ($search) {
             if ($search) {
               $query->where('nome',$search);
-              $query->orWhere('nome','LIKE', "%{$search}");
+              $query->orWhere('nome','LIKE', "%{$search}%");
             }
         })->get();
         return $evento;

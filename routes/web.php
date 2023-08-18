@@ -29,8 +29,9 @@ Route::prefix('agenda')->group(function (){
     Route::get('/agenda',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
     Route::post('/agenda',[\App\Http\Controllers\agendaController::class,'salvar'])->name('site.salvar');
     Route::delete('/deletar',[\App\Http\Controllers\agendaController::class,'deletar'])->name('site.delete');
-    Route::get('/agendamentos',[\App\Http\Controllers\ExibirEventosController::class,'agendamentos'])->name('site.ev');
-    Route::get('/',[\App\Http\Controllers\ExibirEventosController::class,'evento'])->name('site.eventos');
+    Route::get('/evento',[\App\Http\Controllers\ExibirEventosController::class,'evento'])->name('site.ev');
+
+    Route::get('/evento',[\App\Http\Controllers\ExibirEventosController::class,'evento'])->name('site.eventos');
 });
 
 Route::prefix('exibir')->group(function (){

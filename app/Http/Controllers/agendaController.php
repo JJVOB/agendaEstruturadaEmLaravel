@@ -25,9 +25,4 @@ class agendaController extends Controller
         return view('site.agenda');
     }
 
-
-
-
-
-    
 }
