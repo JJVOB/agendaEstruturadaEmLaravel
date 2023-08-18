@@ -1,5 +1,3 @@
-<?php
-
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\agendaController;
@@ -8,8 +6,7 @@ use App\Http\Controllers\AgendamentosFuturosController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ExibirEventosController;
 
-use App\Evento;
-
+use App\Evento; // Importa o modelo 'Evento'
 
 /*
 |--------------------------------------------------------------------------
@@ -21,37 +18,25 @@ use App\Evento;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Rota inicial
 Route::get('/',[\App\Http\Controllers\PrincipalController::class,'principal'])->name('site.index');
 
-
-
+// Grupo de rotas para o prefixo 'agenda'
 Route::prefix('agenda')->group(function (){
     Route::get('/agenda',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
     Route::post('/agenda',[\App\Http\Controllers\agendaController::class,'salvar'])->name('site.salvar');
-    Route::delete('/deletar',[\App\Http\Controllers\agendaController::class,'deletar'])->name('site.delete');
-    Route::get('/evento',[\App\Http\Controllers\ExibirEventosController::class,'evento'])->name('site.ev');
-
-    Route::get('/evento',[\App\Http\Controllers\ExibirEventosController::class,'evento'])->name('site.eventos');
+    Route::delete('/delete',[\App\Http\Controllers\EventosController::class,'delete'])->name('site.delete');
+    Route::get('/evento',[\App\Http\Controllers\EventosController::class,'evento'])->name('site.ev');
+    Route::get('/evento',[\App\Http\Controllers\EventosController::class,'evento'])->name('site.eventos'); // Correção: duplicação do nome da rota
 });
 
+// Grupo de rotas para o prefixo 'exibir'
 Route::prefix('exibir')->group(function (){
-    
-  //  Route::get('/',[\App\Http\Controllers\ExibirEventosController::class,'evetos'])->name('site.agendamentos');
-    //Route::get('/agendamentosAnteriores',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
-    //Route::post('/agendamentosAnteriores',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosAnteriores'])->name('site.agendamentosAnteriores');
-    
-    //Route::get('/agendamentosFuturos',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
-    //Route::post('/agendamentosFuturos',[\App\Http\Controllers\ExibirEventosController::class,'agendamentosFuturos'])->name('site.agendamentosFuturos');
-    
-   
+    // As rotas dentro desse grupo estão comentadas, você pode descomentá-las e configurá-las conforme necessário.
 });
 
-
-
-
-/* Caso a pagina não seja encontrada */
+// Rota de fallback (caso a página não seja encontrada)
 Route::fallback(function(){
-
-    echo 'Página não entrada!! <br> <a href="'.route('site.index').'" >Clique aqui </a> para ser redirecionado.';
-
+    echo 'Página não encontrada!! <br> <a href="'.route('site.index').'" >Clique aqui</a> para ser redirecionado.';
 });

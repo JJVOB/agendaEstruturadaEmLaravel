@@ -1,10 +1,10 @@
-@extends('site.layouts.estruturaBasica')
+@extends('site.layouts.estruturaBasica') // Estende o layout 'estruturaBasica'
 
-@section('titulo', 'Todos os agendamentos')
+@section('titulo', 'Todos os agendamentos') // Define o título da página
 
-@section('principal')
+@section('principal') // Define a seção 'principal' do layout
 
-    @include('site.layouts._partials.topo')
+    @include('site.layouts._partials.topo') // Inclui o topo do layout
 
     <section id="home">
         <div id="caixa_formulario" class="container pt-5 pb-5">
@@ -14,10 +14,10 @@
             </div>
 
             <div class="row justify-content-center">
-                
-                @if($findEvento->isEmpty()){
+                @if($findEvento->isEmpty())
                     <p> Não existe dados </p>
-                }@else           
+                @else
+                    <!-- Criação da tabela de eventos -->
                     <table id="tabela" class="table table-bordereds justify-content-center">
                         <thead>
                             <tr>
@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <!-- Loop para exibir os eventos -->
                             @foreach($findEvento as $evento)
                                 <tr>
                                     <th>{{$evento['id']}}</th>
@@ -40,13 +40,16 @@
                                     <td>{{$evento['data_final']}}</td>
                                     <td>{{$evento['descricao']}}</td>
                                     <td>{{$evento['cliente']}}</td>
-                                    <td> 
-                                        <button class="btn btn-primary btn-edit" style="display: inline;" value="{{$evento['id']}}" data-bs-toggle="modal" data-bs-target="#editarClienteModal">
+                                    <td>
+                                        <!-- Botão para editar (abre um modal) -->
+                                        <a href="" class="btn btn-primary btn-edit" style="display: inline;" data-bs-toggle="modal" data-bs-target="#editarClienteModal">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="btn btn-danger btn-delete" style="display: inline;" value="{{$evento['id']}}" data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
+                                        <!-- Botão para excluir (chama a função deleteEvento) -->
+                                        <meta name='csrf-token' content="{{csrf_token}}" />
+                                        <a onclick="deleteEvento('{{route('site.delete')}}',{{$evento->id}})" class="btn btn-danger btn-delete" style="display: inline;"  data-bs-toggle="modal" data-bs-target="#confirmarExclusaoModal">
                                             <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,6 +57,7 @@
                     </table>
                 </div>
 
+                <!-- Formulário de pesquisa -->
                 <div>
                     <form action="{{route('site.eventos')}}" method="get">
                         <input type="text" name="pesquisar" placeholder="Pesquisar"/>
@@ -61,8 +65,10 @@
                     </form>
                     <br><br><br>
                 </div>
+            </div>
         </div>
 
+        <!-- Componente para exibir ações (ações.blade.php) -->
         @component('site.layouts._acoes.acoes')     
         @endcomponent
 
