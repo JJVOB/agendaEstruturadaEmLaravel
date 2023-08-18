@@ -9,5 +9,11 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    // Utiliza traits para incorporar funcionalidades específicas ao controlador base
+
+    use AuthorizesRequests; // Fornece métodos para autorização de acesso
+
+    use DispatchesJobs; // Permite despachar trabalhos (jobs) em filas
+
+    use ValidatesRequests; // Fornece métodos para validação de requisições
 }

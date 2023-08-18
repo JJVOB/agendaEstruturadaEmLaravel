@@ -1,5 +1,5 @@
 
-<form id="formularioItens" method="POST" action={{route('site.salvar')}}>
+<form id="formularioItens" method="POST" action={{route('cadastro.evento')}}>
     @csrf
     <div class="form-group row">
         <label for="nomeDoEvento" class="col-md-3 col-form-label">Nome do evento</label>

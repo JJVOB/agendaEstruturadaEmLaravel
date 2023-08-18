@@ -15,7 +15,7 @@
 
             <div class="modal-footer">
                 <button type="button" onclick="location.href='{{ route('site.agenda') }}' " class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form id="formDelete" action={{ route('site.delete') }}  method="DELETE" style="display: inline;">
+                <form id="formDelete" action= '' method="DELETE" style="display: inline;">
                     <button id="delete" type="submit" class="btn btn-danger">Excluir</button>
                 </form> 
             </div>

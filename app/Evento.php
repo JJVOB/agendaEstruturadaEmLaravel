@@ -3,29 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Evento extends Model
 {
+   // use HasFactory; // Utiliza o Factory para facilitar a criação de instâncias do modelo
 
-
+    // Atributos preenchíveis em massa
     protected $fillable = [
         'titulo',
         'descricao',
         'data_inicial',
         'data_final',
         'cliente'
-   ];
+    ];
 
-
-   public function getPordutosPesquisar(string $search = ''){
-
-        $evento = $this->where(function($query) use($search){
+    // Função para buscar eventos com um termo de pesquisa
+    public function buscarEventos(string $search = '')
+    {
+        $evento = $this->where(function ($query) use ($search) {
             if ($search) {
-              $query->where('nome',$search);
-              $query->orWhere('nome','LIKE', "%{$search}");
+                // Condição de busca pelo nome
+                $query->where('titulo', $search);
+                // Condição de busca pelo nome parcial (LIKE)
+                $query->orWhere('titulo', 'LIKE', "%{$search}%");
             }
-        })->get();
-        return $evento;
-   }
-  
+        })->get(); // Realiza a consulta ao banco de dados
+
+        return $evento; // Retorna a coleção de eventos encontrados
+    }
 }
