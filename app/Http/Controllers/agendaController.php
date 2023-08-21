@@ -43,8 +43,6 @@ class agendaController extends Controller
         if ($request->method() == "PUT") {
             // atualiza os dados
             $data = $request->all();
-            $componentes = new Componentes();
-            $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
             $buscaRegistro = Evento::find($id);
             $buscaRegistro->update($data);
 

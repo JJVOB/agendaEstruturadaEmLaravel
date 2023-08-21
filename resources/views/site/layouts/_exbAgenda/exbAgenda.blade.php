@@ -33,8 +33,8 @@ foreach ($rows as $key => $value) {
             <td> 
                 <meta name="csrf-token" content="{{ csrf_token() }}" />
                 <input class="btn btn-danger btn-sm" type="submit" 
-                    onclick="deleteEvento({{ $value["id"] }})" 
-                    value=" Excluir "/>
+                onclick="deleteEvento(' . $value['id'] . ')" 
+                value=" Excluir "/>
 
 
             </td>
@@ -44,16 +44,45 @@ foreach ($rows as $key => $value) {
 ?>
 
 <script>
-function deleteEvento(eventoId) {
-    public function delete($id)
-    {
-        try {
-            // Lógica para excluir o evento do banco de dados
-            DB::table('eventos')->where('id', $id)->delete();
 
-            return redirect()->back()->with('success', 'Evento excluído com sucesso.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o evento.');
-        }
+function deleteEvento(rotaUrl, idDoEvento) {
+    // Exibe um prompt de confirmação para o usuário
+    if (confirm('Deseja confirmar a exclusão?')) {
+        $.ajax({
+            url: rotaUrl, // URL da rota onde o evento será excluído
+            method: 'DELETE', // Método HTTP DELETE para a exclusão
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                id: idDoEvento, // ID do evento a ser excluído
+            },
+            beforeSend: function () {
+                // Antes de enviar a requisição, bloqueia a interface do usuário
+                $.blockUI({
+                    message: 'Carregando ... ',
+                    timeout: 2000, // Desbloqueia após 2 segundos
+                });
+            },
+        }).done(function (data) {
+            // Quando a requisição é bem-sucedida, desbloqueia a interface e exibe os dados de resposta no console
+            $.unblockUI();
+            if(data.success == true){
+                window.location.reload();
+            }else{
+                alert('Não foi possível realizar a exclusão do evento referenciado');
+            }
+        }).fail(function (data) {
+            // Quando a requisição falha, desbloqueia a interface e exibe um alerta de erro
+            $.unblockUI();
+            alert('Não foi possível realizar a busca do evento referenciado');
+            console.log(data);
+        }).fail(function (data) {
+            // Quando a requisição falha, desbloqueia a interface e exibe um alerta de erro
+            $.unblockUI();
+            alert('Não foi possível realizar a exclusão do evento referenciado');
+        });
     }
+}
 </script>
+
