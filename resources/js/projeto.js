@@ -29,6 +29,11 @@ function deleteEvento(rotaUrl, idDoEvento) {
             // Quando a requisição falha, desbloqueia a interface e exibe um alerta de erro
             $.unblockUI();
             alert('Não foi possível realizar a busca do evento referenciado');
+            console.log(data);
+        }).fail(function (data) {
+            // Quando a requisição falha, desbloqueia a interface e exibe um alerta de erro
+            $.unblockUI();
+            alert('Não foi possível realizar a exclusão do evento referenciado');
         });
     }
 }

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Evento extends Model
 {
-   // use HasFactory; // Utiliza o Factory para facilitar a criação de instâncias do modelo
 
     // Atributos preenchíveis em massa
     protected $fillable = [
@@ -23,10 +22,8 @@ class Evento extends Model
     {
         $evento = $this->where(function ($query) use ($search) {
             if ($search) {
-                // Condição de busca pelo nome
-                $query->where('titulo', $search);
-                // Condição de busca pelo nome parcial (LIKE)
-                $query->orWhere('titulo', 'LIKE', "%{$search}%");
+              $query->where('titulo',$search);
+              $query->orWhere('titulo','LIKE', "%{$search}");
             }
         })->get(); // Realiza a consulta ao banco de dados
 

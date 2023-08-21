@@ -1,10 +1,10 @@
-@extends('site.layouts.estruturaBasica') <!-- Estende o layout 'estruturaBasica' -->
+@extends('site.layouts.estruturaBasica') 
 
-@section('titulo', 'Todos os agendamentos') <!-- Define o título da página -->
+@section('titulo', 'Todos os agendamentos') 
 
-@section('principal') <!-- Define a seção 'principal' do layout -->
+@section('principal') 
 
-    @include('site.layouts._partials.topo') <!-- Inclui o topo do layout -->
+    @include('site.layouts._partials.topo') 
 
     <section id="home">
         <div id="caixa_formulario" class="container pt-5 pb-5">
@@ -45,6 +45,5 @@
         @component('site.layouts._acoes.acoes')     
         @endcomponent
 
-    </section>
 
 @endsection

@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -8,8 +9,7 @@ use App\Http\Controllers\AgendamentosFuturosController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ExibirEventosController;
 
-use App\Evento;
-
+use App\Evento; // Importa o modelo 'Evento'
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,9 @@ Route::prefix('agenda')->group(function () {
     Route::get('/atualizarEvento{id}',[\App\Http\Controllers\agendaController::class,'atualizarEvento'])->name('atualizar.evento');
     Route::put('/atualizarEvento{id}',[\App\Http\Controllers\agendaController::class,'atualizarEvento'])->name('atualizarevento.evento');
 
-    Route::delete('/delete',[\App\Http\Controllers\agendaController::class,'delete'])->name('evento.delete');        
+    Route::delete('/evento/{id}', [\App\Http\Controllers\EventosController::class,'delete'])->name('evento.delete');
+
+    
    
     Route::get('/agendamentos',[\App\Http\Controllers\agendaController::class,'pesquisarEvento'])->name('site.eventos');
     Route::get('/teste',[\App\Http\Controllers\agendaController::class,'teste'])->name('site.teste');
@@ -44,15 +46,7 @@ Route::prefix('agenda')->group(function () {
 
 });
 
-
-
-
-
-
-
-/* Caso a pagina não seja encontrada */
+// Rota de fallback (caso a página não seja encontrada)
 Route::fallback(function(){
-
-    echo 'Página não entrada!! <br> <a href="'.route('site.index').'" >Clique aqui </a> para ser redirecionado.';
-
+    echo 'Página não encontrada!! <br> <a href="'.route('site.index').'" >Clique aqui</a> para ser redirecionado.';
 });
