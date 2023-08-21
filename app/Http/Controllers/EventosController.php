@@ -32,7 +32,7 @@ class EventosController extends Controller
     public function editar($id)
     {
         $evento = Evento::find($id);
-        return view('eventos.editar', ['evento' => $evento]);
+        return view('site.editar', ['evento' => $evento]);
     }
 
     public function update(Request $request, $id)
@@ -49,7 +49,7 @@ class EventosController extends Controller
 
         $evento->save();
 
-        return redirect()->route('evento.editar', ['id' => $id])->with('success', 'Evento atualizado com sucesso.');
+        return redirect()->route('site.editar', ['id' => $id])->with('success', 'Evento atualizado com sucesso.');
     }
 
     public function delete($id)
@@ -67,6 +67,7 @@ class EventosController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o evento.');
         }
+        return view('site.delete');
     }
 
     public function agendamentos()

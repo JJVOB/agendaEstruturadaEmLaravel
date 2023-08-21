@@ -33,12 +33,12 @@ Route::prefix('agenda')->group(function () {
     Route::post('/cadastraEvento',[\App\Http\Controllers\agendaController::class,'cadastraEvento'])->name('site.cadastraEventos');
 
     //edit
-    Route::get('/evento/editar/{id}', 'EventosController@editar')->name('evento.editar');
+    Route::get('/evento/editar/{id}', 'EventosController@editar')->name('site.editar');
     Route::put('/evento/editar/{id}', 'EventosController@update')->name('evento.update');
     
     Route::get('/eventos', [\App\Http\Controllers\EventosController::class,'pesquisar'])->name('site.pesquisar');
 
-
+    Route::delete('/evento/delete/{id}', 'EventosController@delete')->name('site.delete');
 });
 
 // Rota de fallback (caso a página não seja encontrada)

@@ -22,8 +22,6 @@ class agendaController extends Controller
     {
         // Cria uma nova instância do modelo 'Evento'
         $agenda = new Evento();
-        dd($request);
-
         // Preenche os atributos do modelo com dados do formulário enviado via $request
         $agenda->titulo = $request->input('nomeDoEvento');
         $agenda->descricao = $request->input('descricao');
@@ -33,9 +31,9 @@ class agendaController extends Controller
 
         // Salva os dados do evento no banco de dados
         $agenda->save();
-
+        return redirect()->back()->with('success', 'Evento cadastrado com sucesso.');
         // Retorna a visualização 'site.agenda'
-        return view('site.agenda');
+        return  view('site.agenda');
     }
 
 }

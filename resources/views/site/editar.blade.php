@@ -1,23 +1,45 @@
-@extends('layouts.app')
+@extends('site.layouts._partials.estruturaBasica')
+@section('titulo', 'Eventos Agendados')
 
-@section('content')
-    <h1>Editar Evento</h1>
+@section('principal')
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+@include('site.layouts._partials.topo') 
+
+<section id="home">
+    <div id="caixa_formulario" class="container pt-5 pb-5">
+        <div class="row">
+            <h1 class="display-4 text-center col"> Editar Evento </h1>
+            <br><br><br><br><br>
         </div>
-    @endif
 
-    <form action="{{ route('evento.update', ['id' => $evento->id]) }}" method="post">
-        @csrf
-        @method('PUT')
-        <label for="titulo">Título:</label>
-        <input type="text" name="titulo" value="{{ $evento->titulo }}" required>
-        <br>
-        <label for="descricao">Descrição:</label>
-        <textarea name="descricao" required>{{ $evento->descricao }}</textarea>
-        <br>
-        <button type="submit">Atualizar Evento</button>
-    </form>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <br><br>
+
+        <div class="row justify-content-center">
+            <table id="tabela" class="table table-bordereds justify-content-center">
+
+            
+                <form action="{{ route('evento.update', ['id' => $evento->id]) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <label for="titulo">Título:</label>
+                    <input class="form-control" type="text" name="titulo" value="{{ $evento->titulo }}" required>
+                    <br>
+                    <label for="descricao">Descrição:</label>
+                    <textarea class="form-control" name="descricao" required>{{ $evento->descricao }}</textarea>
+                    <br> <br>
+                    <button class="btn btn-outline-info" type="submit">Atualizar Evento</button>
+                </form>
+                <tbody class="table table-bordereds justify-content-center">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 @endsection

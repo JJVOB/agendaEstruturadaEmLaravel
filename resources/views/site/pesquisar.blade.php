@@ -45,9 +45,14 @@
                             <td>{{ $evento->cliente }}</td>
                             <td> 
                                 <meta name="csrf-token" content="{{ csrf_token() }}" />
-                                <input class="btn btn-danger btn-sm" type="submit" 
-                                onclick="deleteEvento({{ $evento->id }})" 
+
+                                <input class="btn btn-outline-danger" type="submit" 
+                                onclick="location.href='{{ route('site.delete', $evento->id) }}'" 
                                 value=" Excluir "/>
+
+                                <input class="btn btn-outline-info" type="submit" 
+                                onclick="location.href='{{ route('site.editar', $evento->id) }}'" 
+                                value=" Editar "/>
                             </td>
                         </tr>
                     @endforeach
