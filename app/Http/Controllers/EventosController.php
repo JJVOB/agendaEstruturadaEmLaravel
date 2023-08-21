@@ -3,40 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Evento; // Importa o modelo 'Evento' para usar no controller
+use App\Evento;
 
 class EventosController extends Controller
 {
-
-    public $evento;
-    // Construtor do controlador, recebe uma instância do modelo 'Evento'
-    public function __construct(Evento $evento)
-    {
-        $this->evento = $evento;
-    }
-
-    // Função para exibir eventos com possibilidade de busca
     public function evento(Request $request)
     {
-        // Obtém o termo de pesquisa do formulário
         $pesquisar = $request->pesquisar;
-
-        // Cria uma instância do modelo Evento
+        
         $Evento = new Evento();
-
-        // Chama o método 'buscarEventos' no modelo para procurar eventos com o termo de pesquisa
-        $findEvento = $Evento->buscarEventos('search', $pesquisar ?? '');
-
-        // Retorna a visualização 'site.agendamentos' com os resultados da busca
+        
+        $findEvento = $Evento->buscarEventos($pesquisar ?? '');
+        
         return view('site.agendamentos', compact('findEvento'));
     }
 
-    // Função para lidar com a exclusão de eventos
+    public function pesquisar(Request $request)
+    {
+        $pesquisa = $request->input('pesquisa');
+        
+        $eventos = Evento::where('titulo', 'LIKE', "%$pesquisa%")
+            ->orWhere('descricao', 'LIKE', "%$pesquisa%")
+            ->get();
+            
+        return view('site.pesquisar', ['eventos' => $eventos]);
+    }
+
+    public function editar($id)
+    {
+        $evento = Evento::find($id);
+        return view('eventos.editar', ['evento' => $evento]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $evento = Evento::find($id);
+
+        if (!$evento) {
+            return redirect()->back()->with('error', 'Evento não encontrado.');
+        }
+
+        $evento->titulo = $request->input('titulo');
+        $evento->descricao = $request->input('descricao');
+        // Atualizar outros campos
+
+        $evento->save();
+
+        return redirect()->route('evento.editar', ['id' => $id])->with('success', 'Evento atualizado com sucesso.');
+    }
+
     public function delete($id)
     {
         try {
-            // Lógica para excluir o evento do banco de dados
-            Evento::table('eventos')->where('id', $id)->delete();
+            $evento = Evento::find($id);
+
+            if (!$evento) {
+                return redirect()->back()->with('error', 'Evento não encontrado.');
+            }
+
+            $evento->delete();
 
             return redirect()->back()->with('success', 'Evento excluído com sucesso.');
         } catch (\Exception $e) {
@@ -44,7 +69,6 @@ class EventosController extends Controller
         }
     }
 
-    // Função para exibir a página de agendamentos
     public function agendamentos()
     {
         return view('site.agendamentos');

@@ -30,18 +30,13 @@ Route::prefix('agenda')->group(function () {
 
     //cadastro
     Route::get('/cadastraEvento',[\App\Http\Controllers\agendaController::class,'agenda'])->name('site.agenda');
-    Route::post('/cadastraEvento',[\App\Http\Controllers\agendaController::class,'cadastraEvento'])->name('cadastro.evento');
+    Route::post('/cadastraEvento',[\App\Http\Controllers\agendaController::class,'cadastraEvento'])->name('site.cadastraEventos');
 
     //edit
-    Route::get('/atualizarEvento{id}',[\App\Http\Controllers\agendaController::class,'atualizarEvento'])->name('atualizar.evento');
-    Route::put('/atualizarEvento{id}',[\App\Http\Controllers\agendaController::class,'atualizarEvento'])->name('atualizarevento.evento');
-
-    Route::delete('/evento/{id}', [\App\Http\Controllers\EventosController::class,'delete'])->name('evento.delete');
-
+    Route::get('/evento/editar/{id}', 'EventosController@editar')->name('evento.editar');
+    Route::put('/evento/editar/{id}', 'EventosController@update')->name('evento.update');
     
-   
-    Route::get('/agendamentos',[\App\Http\Controllers\agendaController::class,'pesquisarEvento'])->name('site.eventos');
-    Route::get('/teste',[\App\Http\Controllers\agendaController::class,'teste'])->name('site.teste');
+    Route::get('/eventos', [\App\Http\Controllers\EventosController::class,'pesquisar'])->name('site.pesquisar');
 
 
 });
